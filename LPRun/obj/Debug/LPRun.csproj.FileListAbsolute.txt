@@ -1,0 +1,5 @@
+D:\projects\LPRun\LPRun\obj\Debug\ResolveAssemblyReference.cache
+D:\projects\LPRun\LPRun\bin\Debug\LPRun.exe
+D:\projects\LPRun\LPRun\bin\Debug\LPRun.pdb
+D:\projects\LPRun\LPRun\obj\Debug\LPRun.exe
+D:\projects\LPRun\LPRun\obj\Debug\LPRun.pdb

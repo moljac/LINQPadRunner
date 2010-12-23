@@ -1,0 +1,13 @@
+D:\projects\LPRun\LPRun.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\projects\LPRun\LPRun.Tests\bin\Debug\Program_WriteHelloTxtFile.linq
+D:\projects\LPRun\LPRun.Tests\bin\Debug\Statement_WriteHelloTxtFile.linq
+D:\projects\LPRun\LPRun.Tests\bin\Debug\LPRun.Tests.dll
+D:\projects\LPRun\LPRun.Tests\bin\Debug\LPRun.Tests.pdb
+D:\projects\LPRun\LPRun.Tests\bin\Debug\LPRun.exe
+D:\projects\LPRun\LPRun.Tests\bin\Debug\nunit.framework.dll
+D:\projects\LPRun\LPRun.Tests\bin\Debug\nunit.mocks.dll
+D:\projects\LPRun\LPRun.Tests\bin\Debug\pnunit.framework.dll
+D:\projects\LPRun\LPRun.Tests\bin\Debug\LPRun.pdb
+D:\projects\LPRun\LPRun.Tests\bin\Debug\nunit.framework.xml
+D:\projects\LPRun\LPRun.Tests\obj\Debug\LPRun.Tests.dll
+D:\projects\LPRun\LPRun.Tests\obj\Debug\LPRun.Tests.pdb
