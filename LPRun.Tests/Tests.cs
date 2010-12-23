@@ -14,22 +14,30 @@ namespace LPRun.Tests
         public void StatementsGetExecuted()
         {
             File.Delete("hello.txt");
-            LPRun.Program.ExecuteFile(null, "Statement_WriteHelloTxtFile.linq");
+            LPRun.Program.ExecuteFile("Statement_WriteHelloTxtFile.linq", null);
             Assert.AreEqual("world", File.ReadAllText("hello.txt"));
         }
         [Test]
         public void ProgramsGetExecuted()
         {
             File.Delete("hello.txt");
-            LPRun.Program.ExecuteFile(null, "Program_WriteHelloTxtFile.linq");
+            LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile.linq", null);
             Assert.AreEqual("world", File.ReadAllText("hello.txt"));
         }
         [Test]
         public void NamespacesGetImported()
         {
             File.Delete("hello.txt");
-            LPRun.Program.ExecuteFile(null, "Program_WriteHelloTxtFile_WithNamespaceImports.linq");
+            LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithNamespaceImports.linq", null);
             Assert.AreEqual("world", File.ReadAllText("hello.txt"));
         }
+        [Test]
+        public void CommandLineArgumentsAreExecuted()
+        {
+            File.Delete("args.txt");
+            LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithCommandLineArguments.linq", "args.txt", "heyhey");
+            Assert.AreEqual("heyhey", File.ReadAllText("args.txt"));
+        }
+
     }
 }

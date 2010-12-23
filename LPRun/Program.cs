@@ -73,22 +73,23 @@ namespace LPRun
         {
             var path = args.First();
             args = args.Skip(1).ToArray();
-            ExecuteFile(args, path);
+            ExecuteFile(path, args);
         }
 
-        public static void ExecuteFile(string[] args, string path)
+        public static void ExecuteFile(string path, params string[] args)
         {
             args = args ?? new string[] {};
             var content = File.ReadAllLines(path);
 
             var xml = string.Join("\r\n", content.TakeWhile(l => l.Trim().StartsWith("<")));
+
             var queryElement = XDocument.Parse(xml).Element("Query");
             var query = new Query
                             {
                                 Kind = queryElement.Attribute("Kind").Value,
                                 Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList()
                             };
-
+            var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
 
             var codeBuilder = new StringBuilder();
             codeBuilder.AppendLine("using " + string.Join(";\r\nusing ", query.Namespaces.Union(StandardNamespaces)) + ";");
@@ -98,7 +99,7 @@ namespace LPRun
             if (query.Kind != "Program")
                 codeBuilder.AppendLine(MethodStart);
 
-            var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
+            
             codeBuilder.AppendLine(code);
             
             if (query.Kind != "Program")

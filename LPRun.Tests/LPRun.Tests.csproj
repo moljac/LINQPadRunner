@@ -53,6 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Program_WriteHelloTxtFile_WithCommandLineArguments.linq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Program_WriteHelloTxtFile_WithNamespaceImports.linq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
