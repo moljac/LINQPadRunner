@@ -89,6 +89,7 @@ namespace LPRun
                                 Kind = queryElement.Attribute("Kind").Value,
                                 Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList(),
                                 GACReferences = queryElement.Elements("GACReference").Select(n => n.Value).ToList(),
+                                RelativeReferences = queryElement.Elements("Reference").Select(n => n.Attribute("Relative").Value).ToList()
                             };
             var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
 
@@ -147,10 +148,14 @@ namespace LPRun
             var provOptions = new Dictionary<string, string>();
             provOptions.Add("CompilerVersion", "v4.0");
             var provider = new CSharpCodeProvider(provOptions);
-            var assemblies = query.GACReferences
-                .Select(s => s.Substring(0, s.IndexOf(",")) + ".dll")
-                .Union(Assemblies).ToArray();
-            var compilerparams = new CompilerParameters(assemblies)
+            var assemblies = new[]
+                                 {
+                                     query.GACReferences.Select(s => s.Substring(0, s.IndexOf(",")) + ".dll"),
+                                     query.RelativeReferences,
+                                     Assemblies,
+                                 };
+
+            var compilerparams = new CompilerParameters(assemblies.SelectMany(a => a).ToArray())
             {
                 GenerateExecutable = false,
                 GenerateInMemory = true

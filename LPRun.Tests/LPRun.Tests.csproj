@@ -53,7 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Program_WriteHelloTxtFile_WithGACImports.linq">
+    <None Include="Program_WriteHelloTxtFile_WithReference.linq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Program_WriteHelloTxtFile_WithGACReference.linq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Program_WriteHelloTxtFile_WithCommandLineArguments.linq">
