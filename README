@@ -1,0 +1,6 @@
+This is a tool for running LINQPad scripts from the command line.
+
+usage:
+
+LPRun.exe somelinqpadfile.linq
+
