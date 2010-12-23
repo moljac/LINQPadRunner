@@ -24,6 +24,12 @@ namespace LPRun.Tests
             LPRun.Program.ExecuteFile(null, "Program_WriteHelloTxtFile.linq");
             Assert.AreEqual("world", File.ReadAllText("hello.txt"));
         }
-
+        [Test]
+        public void NamespacesGetImported()
+        {
+            File.Delete("hello.txt");
+            LPRun.Program.ExecuteFile(null, "Program_WriteHelloTxtFile_WithNamespaceImports.linq");
+            Assert.AreEqual("world", File.ReadAllText("hello.txt"));
+        }
     }
 }

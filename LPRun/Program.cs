@@ -5,14 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Xml.Linq;
 using System.Xml.Serialization;
+using LPRun.Linqpad;
 using Microsoft.CSharp;
 
 namespace LPRun
 {
     public class Program
     {
-        public static List<string> Namespaces
+        public static List<string> StandardNamespaces
         {
             get
             {
@@ -77,22 +79,27 @@ namespace LPRun
         public static void ExecuteFile(string[] args, string path)
         {
             args = args ?? new string[] {};
-            var content = File.ReadAllText(path);
-            var splitIndex = content.Substring(0, content.IndexOf("\r")).EndsWith("/>") ?
-                                                                                            content.IndexOf("\r") : content.IndexOf("</Query>");
-            var xml = content.Substring(0, splitIndex);
-            var reader = new StringReader(xml);
+            var content = File.ReadAllLines(path);
 
-            var query = (Query) new XmlSerializer(typeof(Query)).Deserialize(reader);
+            var xml = string.Join("\r\n", content.TakeWhile(l => l.Trim().StartsWith("<")));
+            var queryElement = XDocument.Parse(xml).Element("Query");
+            var query = new Query
+                            {
+                                Kind = queryElement.Attribute("Kind").Value,
+                                Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList()
+                            };
+
+
             var codeBuilder = new StringBuilder();
-            codeBuilder.AppendLine("using " + string.Join(";\r\nusing ", Namespaces.ToArray()) + ";");
+            codeBuilder.AppendLine("using " + string.Join(";\r\nusing ", query.Namespaces.Union(StandardNamespaces)) + ";");
             codeBuilder.AppendLine(NamespaceStart);
             codeBuilder.AppendLine(ClassStart);
 
             if (query.Kind != "Program")
                 codeBuilder.AppendLine(MethodStart);
 
-            codeBuilder.AppendLine(content.Substring(splitIndex));
+            var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
+            codeBuilder.AppendLine(code);
             
             if (query.Kind != "Program")
                 codeBuilder.AppendLine(MethodEnd);

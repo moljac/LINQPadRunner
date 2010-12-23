@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace LPRun
+namespace LPRun.Linqpad
 {
     [Serializable]
     public class Query
     {
-        [XmlAttribute]
         public string Kind { get; set; }
+        public List<string> Namespaces { get; set; }
     }
 }
