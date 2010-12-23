@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -89,7 +90,9 @@ namespace LPRun
                                 Kind = queryElement.Attribute("Kind").Value,
                                 Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList(),
                                 GACReferences = queryElement.Elements("GACReference").Select(n => n.Value).ToList(),
-                                RelativeReferences = queryElement.Elements("Reference").Select(n => n.Attribute("Relative").Value).ToList()
+                                RelativeReferences = queryElement.Elements("Reference").Where(e => e.Attribute("Relative") != null).Select(n => n.Attribute("Relative").Value).ToList(),
+                                OtherReferences = queryElement.Elements("Reference").Where(e => e.Attribute("Relative") == null).Select(n => n.Value.Replace("<RuntimeDirectory>", RuntimeEnvironment.GetRuntimeDirectory())).ToList(),
+
                             };
             var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
 
@@ -113,6 +116,7 @@ namespace LPRun
             Console.WriteLine(output);
         }
 
+     
         static object ExecuteCode(Query query, string code, string namespacename, string classname, string functionname, bool isstatic, string[] args)
         {
             object returnval = null;
@@ -152,6 +156,7 @@ namespace LPRun
                                  {
                                      query.GACReferences.Select(s => s.Substring(0, s.IndexOf(",")) + ".dll"),
                                      query.RelativeReferences,
+                                     query.OtherReferences,
                                      Assemblies,
                                  };
 
@@ -161,7 +166,7 @@ namespace LPRun
                 GenerateInMemory = true
             };
 
-            var results = provider.CompileAssemblyFromSource(compilerparams, code);
+var results = provider.CompileAssemblyFromSource(compilerparams, code);
             if (results.Errors.HasErrors)
             {
                 StringBuilder errors = new StringBuilder("Compiler Errors :\r\n");

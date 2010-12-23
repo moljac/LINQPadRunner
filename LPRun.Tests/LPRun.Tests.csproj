@@ -53,6 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Program_WriteHelloTxtFile_WithRuntimeDirReference.linq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Program_WriteHelloTxtFile_WithReference.linq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

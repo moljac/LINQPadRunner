@@ -52,6 +52,12 @@ namespace LPRun.Tests
             LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithGACReference.linq", "hello.txt", "world");
             Assert.AreEqual("world", File.ReadAllText("hello.txt"));
         }
-
+        [Test]
+        public void RuntimeReferencesGetImported()
+        {
+            File.Delete("args.txt");
+            LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithRuntimeDirReference.linq", "hello.txt", "world");
+            Assert.AreEqual("world", File.ReadAllText("hello.txt"));
+        }
     }
 }
