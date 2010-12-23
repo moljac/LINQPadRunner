@@ -11,5 +11,6 @@ namespace LPRun.Linqpad
     {
         public string Kind { get; set; }
         public List<string> Namespaces { get; set; }
+        public List<string> GACReferences { get; set; }
     }
 }

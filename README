@@ -2,7 +2,21 @@ This is a tool for running LINQPad scripts from the command line.
 
 usage:
 
-LPRun.exe somelinqpadfile.linq
+LPRun.exe somelinqpadfile.linq [args]
 
 
+If you want to use command line options, you need to make the LINQPad script a program, 
+and create a second Main method, with string arguments e.g. 
 
+
+void Main()
+{
+	//this method will be run if you press f5 in LinqPad
+	Main("arg0", "arg1");
+}
+
+
+void Main(params string[] args)
+{
+	//this is used as the entry point by LPRun.exe
+}

@@ -87,7 +87,8 @@ namespace LPRun
             var query = new Query
                             {
                                 Kind = queryElement.Attribute("Kind").Value,
-                                Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList()
+                                Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList(),
+                                GACReferences = queryElement.Elements("GACReference").Select(n => n.Value).ToList(),
                             };
             var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
 
@@ -107,14 +108,14 @@ namespace LPRun
             codeBuilder.AppendLine(ClassEnd);
             codeBuilder.AppendLine(NamespaceEnd);
             
-            var output = ExecuteCode(codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
+            var output = ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
             Console.WriteLine(output);
         }
 
-        static object ExecuteCode(string code, string namespacename, string classname, string functionname, bool isstatic, string[] args)
+        static object ExecuteCode(Query query, string code, string namespacename, string classname, string functionname, bool isstatic, string[] args)
         {
             object returnval = null;
-            Assembly asm = BuildAssembly(code);
+            Assembly asm = BuildAssembly(query, code);
             object instance = null;
             Type type = null;
             if (isstatic)
@@ -141,12 +142,15 @@ namespace LPRun
 
         }
 
-        private static Assembly BuildAssembly(string code)
+        private static Assembly BuildAssembly(Query query, string code)
         {
             var provOptions = new Dictionary<string, string>();
             provOptions.Add("CompilerVersion", "v4.0");
             var provider = new CSharpCodeProvider(provOptions);
-            var compilerparams = new CompilerParameters(Assemblies.ToArray())
+            var assemblies = query.GACReferences
+                .Select(s => s.Substring(0, s.IndexOf(",")) + ".dll")
+                .Union(Assemblies).ToArray();
+            var compilerparams = new CompilerParameters(assemblies)
             {
                 GenerateExecutable = false,
                 GenerateInMemory = true

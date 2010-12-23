@@ -38,6 +38,12 @@ namespace LPRun.Tests
             LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithCommandLineArguments.linq", "args.txt", "heyhey");
             Assert.AreEqual("heyhey", File.ReadAllText("args.txt"));
         }
-
+        [Test]
+        public void GACReferencesGetImported()
+        {
+            File.Delete("args.txt");
+            LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithGACImports.linq", "hello.txt", "world");
+            Assert.AreEqual("world", File.ReadAllText("hello.txt"));
+        }
     }
 }
