@@ -11,15 +11,21 @@ void Main(){
 
 void Main(params string[] args)
 {
-	var engine = new Engine();
+
+	//Set up logger from command line a
 	ILogger logger = GetLogger(args) ?? new ConsoleLogger();
 	var es = new ManualEventSource();
 	logger.Initialize(es);
+	es.RaiseWarning("one");
+	var engine = new Engine();
 	engine.RegisterLogger(logger);
+	es.RaiseWarning("two");	
 	var project = new Project(engine);
 	project.Load("LPRun.sln");
+	es.RaiseWarning("three");	
+	
 	project.Build();
-	es.RaiseError("FAIL!");	
+	es.RaiseWarning("four");	
 }
 
 ILogger GetLogger(string[] args)
