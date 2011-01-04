@@ -122,9 +122,10 @@ namespace LPRun
                 codeBuilder.AppendLine(ClassEnd);
                 codeBuilder.AppendLine(NamespaceEnd);
                 ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
-                return 0;asdf
+                return 0;
             }catch(Exception ex)
             {
+                while (ex is TargetInvocationException) ex = ex.InnerException;
                 Console.Error.WriteLine(ex.ToString());
                 Console.WriteLine(ex.ToString());
                 return 1;
