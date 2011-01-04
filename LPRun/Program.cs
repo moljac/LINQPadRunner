@@ -121,9 +121,7 @@ namespace LPRun
                     codeBuilder.AppendLine(MethodEnd);
                 codeBuilder.AppendLine(ClassEnd);
                 codeBuilder.AppendLine(NamespaceEnd);
-
-                ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false,
-                                         args);
+                ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
                 return 0;
             }catch(Exception ex)
             {
