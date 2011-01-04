@@ -119,7 +119,7 @@ namespace LPRun
 
                 if (query.Kind != "Program")
                     codeBuilder.AppendLine(MethodEnd);
-                codeBuilder.AppendLine(ClassEnd);
+                codeBuilder.AppendLine(ClassEnd);asdf
                 codeBuilder.AppendLine(NamespaceEnd);
                 ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
                 return 0;
