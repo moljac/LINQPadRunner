@@ -1,4 +1,3 @@
-copy lprun.exe lprun2.exe
-lprun2 build.linq
-del lprun2.exe
-pause
+git commit -am "updating after successful build"
+
+git push origin master
