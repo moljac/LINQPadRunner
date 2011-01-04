@@ -13,18 +13,13 @@ void Main(params string[] args)
 {
 	var engine = new Engine();
 	ILogger logger = GetLogger(args) ?? new ConsoleLogger();
-	var dummyEventSource = new DummyEventSource();
-	logger.Initialize(dummyEventSource);
-	var errorArg= new BuildErrorEventArgs("Subcategory", "code", "file", 0, 0, 0, 0, "Message", "Helpkeyword", "sender");
-	dummyEventSource.InvokeErrorRaised(errorArg);
+	var es = new ManualEventSource();
+	logger.Initialize(es);
 	engine.RegisterLogger(logger);
-	
-	
-	
 	var project = new Project(engine);
 	project.Load("LPRun.sln");
 	project.Build();
-	
+	es.RaiseError("FAIL!");	
 }
 
 ILogger GetLogger(string[] args)
@@ -41,13 +36,17 @@ ILogger GetLogger(string[] args)
 }
 
  
-
-public class DummyEventSource : IEventSource
+public class ManualEventSource : IEventSource
 {
 	public event BuildMessageEventHandler MessageRaised;
 	public event BuildErrorEventHandler ErrorRaised;
 
-	public void InvokeErrorRaised(BuildErrorEventArgs e)
+	public void RaiseError(string message, string subcategory = null, string code = null, string file = null, int endColumnNumber = 0, int endLineNumber = 0, int columnNumber = 0, int number = 0, string helpKeyword = null, string senderName = null)
+	{
+		var args = new BuildErrorEventArgs(subcategory, code, file, endColumnNumber, endLineNumber, columnNumber, number, message, helpKeyword, senderName);
+		RaiseError(args);
+	}
+	private void RaiseError(BuildErrorEventArgs e)
 	{
 		BuildErrorEventHandler handler = ErrorRaised;
 		if (handler != null) handler(this, e);
@@ -55,7 +54,12 @@ public class DummyEventSource : IEventSource
 
 	public event BuildWarningEventHandler WarningRaised;
 
-	public void InvokeWarningRaised(BuildWarningEventArgs e)
+	public void RaiseWarning(string message, string subcategory = null, string code = null, string file = null, int endColumnNumber = 0, int endLineNumber = 0, int columnNumber = 0, int number = 0, string helpKeyword = null, string senderName = null)
+	{
+		var args = new BuildWarningEventArgs(subcategory, code, file, endColumnNumber, endLineNumber, columnNumber, number, message, helpKeyword, senderName);
+		RaiseWarning(args);
+	}
+	private void RaiseWarning(BuildWarningEventArgs e)
 	{
 		BuildWarningEventHandler handler = WarningRaised;
 		if (handler != null) handler(this, e);
