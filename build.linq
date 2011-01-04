@@ -8,9 +8,7 @@ var project = new Project(engine);
 project.Load("LPRun.sln");
 
 if (!engine.BuildProject(project)){
-	Environment.ExitCode = 1;
-	Console.WriteLine("Failure!");
+	throw new Exception("Failure");
 }else{
 	Console.WriteLine("Success!");
 }
-
