@@ -53,8 +53,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Statement_WriteHelloToConsole.linq">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Statement_DoesNotCompile.linq">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Program_WriteHelloTxtFile_WithRuntimeDirReference.linq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Program_WriteHelloTxtFile_WithReference.linq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

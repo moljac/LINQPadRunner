@@ -59,5 +59,15 @@ namespace LPRun.Tests
             LPRun.Program.ExecuteFile("Program_WriteHelloTxtFile_WithRuntimeDirReference.linq", "hello.txt", "world");
             Assert.AreEqual("world", File.ReadAllText("hello.txt"));
         }
-    }
+        [Test]
+        public void BadCodeReturnsErrorCodeOf1()
+        {
+            Assert.AreEqual(1, LPRun.Program.ExecuteFile("Statement_DoesNotCompile.linq"));
+        }
+        [Test]
+        public void GoodCodeReturnsErrorCodeOf0()
+        {
+            Assert.AreEqual(0, LPRun.Program.ExecuteFile("Statement_WriteHelloToConsole.linq"));
+        }
+    }     
 }

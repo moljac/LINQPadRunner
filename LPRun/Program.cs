@@ -70,50 +70,66 @@ namespace LPRun
 
         private const string ClassEnd = @"}";
         private const string NamespaceEnd = "}";
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var path = args.First();
             args = args.Skip(1).ToArray();
-            ExecuteFile(path, args);
+            return ExecuteFile(path, args);
         }
 
-        public static void ExecuteFile(string path, params string[] args)
+        public static int ExecuteFile(string path, params string[] args)
         {
-            args = args ?? new string[] {};
-            var content = File.ReadAllLines(path);
+            try
+            {
+                args = args ?? new string[] {};
+                var content = File.ReadAllLines(path);
 
-            var xml = string.Join("\r\n", content.TakeWhile(l => l.Trim().StartsWith("<")));
+                var xml = string.Join("\r\n", content.TakeWhile(l => l.Trim().StartsWith("<")));
 
-            var queryElement = XDocument.Parse(xml).Element("Query");
-            var query = new Query
-                            {
-                                Kind = queryElement.Attribute("Kind").Value,
-                                Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList(),
-                                GACReferences = queryElement.Elements("GACReference").Select(n => n.Value).ToList(),
-                                RelativeReferences = queryElement.Elements("Reference").Where(e => e.Attribute("Relative") != null).Select(n => n.Attribute("Relative").Value).ToList(),
-                                OtherReferences = queryElement.Elements("Reference").Where(e => e.Attribute("Relative") == null).Select(n => n.Value.Replace("<RuntimeDirectory>", RuntimeEnvironment.GetRuntimeDirectory())).ToList(),
+                var queryElement = XDocument.Parse(xml).Element("Query");
+                var query = new Query
+                                {
+                                    Kind = queryElement.Attribute("Kind").Value,
+                                    Namespaces = queryElement.Elements("Namespace").Select(n => n.Value).ToList(),
+                                    GACReferences = queryElement.Elements("GACReference").Select(n => n.Value).ToList(),
+                                    RelativeReferences =
+                                        queryElement.Elements("Reference").Where(e => e.Attribute("Relative") != null).
+                                        Select(n => n.Attribute("Relative").Value).ToList(),
+                                    OtherReferences =
+                                        queryElement.Elements("Reference").Where(e => e.Attribute("Relative") == null).
+                                        Select(
+                                            n =>
+                                            n.Value.Replace("<RuntimeDirectory>",
+                                                            RuntimeEnvironment.GetRuntimeDirectory())).ToList(),
 
-                            };
-            var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
+                                };
+                var code = string.Join("\r\n", content.SkipWhile(l => l.Trim().StartsWith("<")));
 
-            var codeBuilder = new StringBuilder();
-            codeBuilder.AppendLine("using " + string.Join(";\r\nusing ", query.Namespaces.Union(StandardNamespaces)) + ";");
-            codeBuilder.AppendLine(NamespaceStart);
-            codeBuilder.AppendLine(ClassStart);
+                var codeBuilder = new StringBuilder();
+                codeBuilder.AppendLine("using " + string.Join(";\r\nusing ", query.Namespaces.Union(StandardNamespaces)) +
+                                       ";");
+                codeBuilder.AppendLine(NamespaceStart);
+                codeBuilder.AppendLine(ClassStart);
 
-            if (query.Kind != "Program")
-                codeBuilder.AppendLine(MethodStart);
+                if (query.Kind != "Program")
+                    codeBuilder.AppendLine(MethodStart);
 
-            
-            codeBuilder.AppendLine(code);
-            
-            if (query.Kind != "Program")
-                codeBuilder.AppendLine(MethodEnd);
-            codeBuilder.AppendLine(ClassEnd);
-            codeBuilder.AppendLine(NamespaceEnd);
-            
-            var output = ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
-            Console.WriteLine(output);
+
+                codeBuilder.AppendLine(code);
+
+                if (query.Kind != "Program")
+                    codeBuilder.AppendLine(MethodEnd);
+                codeBuilder.AppendLine(ClassEnd);
+                codeBuilder.AppendLine(NamespaceEnd);
+
+                var output = ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false,
+                                         args);
+                Console.WriteLine(output);
+                return 0;
+            }catch(Exception ex)
+            {
+                return 1;
+            }
         }
 
      
