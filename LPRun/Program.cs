@@ -122,7 +122,7 @@ namespace LPRun
                 codeBuilder.AppendLine(ClassEnd);
                 codeBuilder.AppendLine(NamespaceEnd);
                 ExecuteCode(query, codeBuilder.ToString(), "LPRun.Generated", "Program", "Main", false, args);
-                return 0;
+                return 0;asdf
             }catch(Exception ex)
             {
                 Console.Error.WriteLine(ex.ToString());
