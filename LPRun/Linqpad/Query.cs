@@ -13,7 +13,7 @@ namespace LPRun.Linqpad
         public List<string> Namespaces { get; set; }
         public List<string> GACReferences { get; set; }
         public List<string> RelativeReferences { get; set; }
-        public List<string> OtherReferences { get; set; }
+        public List<string> OtherReferences { get; set; }asdf
 
     }
 }
