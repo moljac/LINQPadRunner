@@ -11,7 +11,7 @@
     <ItemStatistics item="Default">
       <Item value="String`0" priority="0" />
       <Item value="XmlArray" priority="1" />
-      <Item value="var" priority="9" />
+      <Item value="var" priority="10" />
       <Item value="content" priority="3" />
       <Item value="foreach" priority="0" />
       <Item value="string" priority="1" />
@@ -22,15 +22,22 @@
       <Item value="XmlArrayItem" priority="0" />
       <Item value="IXmlSerializable`0" priority="0" />
       <Item value="return" priority="0" />
-      <Item value="null" priority="0" />
+      <Item value="null" priority="1" />
       <Item value="reader" priority="2" />
       <Item value="public" priority="0" />
       <Item value="List" priority="0" />
-      <Item value="new" priority="0" />
+      <Item value="new" priority="1" />
       <Item value="Query`0" priority="0" />
-      <Item value="query" priority="2" />
+      <Item value="query" priority="4" />
       <Item value="xDoc" priority="0" />
-      <Item value="n" priority="0" />
+      <Item value="n" priority="1" />
+      <Item value="Assemblies" priority="0" />
+      <Item value="Assembly`0" priority="0" />
+      <Item value="s" priority="0" />
+      <Item value="RelativeReferences" priority="0" />
+      <Item value="SelectMany`3" priority="0" />
+      <Item value="a" priority="0" />
+      <Item value="Console`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.String">
       <Item value="Join`0" priority="1" />
@@ -38,6 +45,8 @@
     <ItemStatistics item="Qualified:System.String">
       <Item value="Trim`0" priority="0" />
       <Item value="StartsWith`0" priority="0" />
+      <Item value="Substring`0" priority="0" />
+      <Item value="IndexOf`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Xml.XmlReader">
       <Item value="ReadElementString`0" priority="0" />
@@ -52,55 +61,72 @@
       <Item value="Equals`0" priority="0" />
       <Item value="Kind" priority="0" />
       <Item value="Namespaces" priority="1" />
+      <Item value="GACReferences" priority="0" />
+      <Item value="RelativeReferences" priority="0" />
+      <Item value="OtherReferences" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Xml.Linq.XDocument">
       <Item value="Element`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Xml.Linq.XElement">
-      <Item value="Attribute`0" priority="0" />
-      <Item value="Elements`0" priority="0" />
-      <Item value="Value" priority="0" />
+      <Item value="Attribute`0" priority="2" />
+      <Item value="Elements`0" priority="1" />
+      <Item value="Value" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Xml.Linq.XAttribute">
-      <Item value="Value" priority="0" />
+      <Item value="Value" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="Select`2" priority="0" />
-      <Item value="ToList`1" priority="0" />
+      <Item value="Select`2" priority="1" />
+      <Item value="ToList`1" priority="1" />
+      <Item value="ToArray`1" priority="1" />
+      <Item value="Where`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Union`1" priority="0" />
+      <Item value="Union`1" priority="2" />
+      <Item value="Select`2" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Reflection.Assembly">
+      <Item value="LoadFrom`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="Error" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.TextWriter">
+      <Item value="WriteLine`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="ToString`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
   <RecentFiles>
     <RecentFiles>
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Statement_WriteHelloTxtFile.linq" caret="11" fromTop="0" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Program_WriteHelloTxtFile.linq" caret="0" fromTop="0" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="259" fromTop="8" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Program_WriteHelloTxtFile_WithNamespaceImports.linq" caret="199" fromTop="8" />
-      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="117" fromTop="7" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Tests.cs" caret="1335" fromTop="19" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="6576" fromTop="25" />
+      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="83" fromTop="3" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="457" fromTop="14" />
       <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Program_WriteHelloTxtFile_WithCommandLineArguments.linq" caret="0" fromTop="0" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5196" fromTop="22" />
     </RecentFiles>
     <RecentEdits>
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Program_WriteHelloTxtFile_WithNamespaceImports.linq" caret="0" fromTop="0" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Program_WriteHelloTxtFile_WithNamespaceImports.linq" caret="243" fromTop="9" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Tests.cs" caret="1038" fromTop="25" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="259" fromTop="12" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="259" fromTop="22" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="301" fromTop="9" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="259" fromTop="8" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="3095" fromTop="5" />
-      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="115" fromTop="6" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Program_WriteHelloTxtFile_WithCommandLineArguments.linq" caret="0" fromTop="0" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="3586" fromTop="16" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="2737" fromTop="3" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="3190" fromTop="10" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Tests.cs" caret="745" fromTop="8" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Tests.cs" caret="1097" fromTop="16" />
-      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="2517" fromTop="12" />
-      <File id="51238B82-1F66-4C89-9C6E-4E1872443A33/f:Tests.cs" caret="1335" fromTop="19" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5263" fromTop="5" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5263" fromTop="16" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5263" fromTop="3" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5263" fromTop="12" />
+      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="495" fromTop="13" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="6837" fromTop="7" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5324" fromTop="10" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5263" fromTop="6" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="7542" fromTop="13" />
+      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="495" fromTop="10" />
+      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="280" fromTop="9" />
+      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="491" fromTop="17" />
+      <File id="B64DC7B7-4652-4920-B400-3B33289BA352/f:README/l:D!?projects?LPRun?README" caret="83" fromTop="3" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="7664" fromTop="13" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5283" fromTop="13" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="483" fromTop="19" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/d:Linqpad/f:Query.cs" caret="457" fromTop="14" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="7356" fromTop="15" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="8347" fromTop="60" />
+      <File id="918212E7-7FAB-4C7C-B28A-FC799F02D0EE/f:Program.cs" caret="5196" fromTop="22" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
