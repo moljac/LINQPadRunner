@@ -20,9 +20,9 @@ void Main(params string[] args)
 	var engine = new Engine();
 	engine.RegisterLogger(logger);
 	es.RaiseTargetStarted(targetName: "some target+", message: "raise targetstarted");
-	es.RaiseTaskStarted(targetName: "some task+", message: "raise taskstarted");
+	es.RaiseTaskStarted(taskName: "some task+", message: "raise taskstarted");
 	es.RaiseWarning(message:"two");	
-	es.RaiseTaskFinished(targetName: "some task-", message: "raise taskfinished");
+	es.RaiseTaskFinished(taskName: "some task-", message: "raise taskfinished");
 	es.RaiseTargetFinished(targetName: "some target-", message: "raise targetfinished");
 	var project = new Project(engine);
 	project.Load("LPRun.sln");
